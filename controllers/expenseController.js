@@ -3,7 +3,7 @@ import Expense from "../models/Expense.js";
 export const getExpenses = async (req, res, next) => {
   try {
     const expenses = await Expense.find().sort({ date: -1 });
-    res.json(expenses);
+    res.status(200).json(expenses);
   } catch (error) {
     next(error);
   }
@@ -13,10 +13,10 @@ export const getExpenseById = async (req, res, next) => {
   try {
     const expense = await Expense.findById(req.params.id);
     if (!expense) {
-      res.status(404);
+      res.status(404).json({ message: "Expense not found" });
       throw new Error("Expense not found");
     }
-    res.json(expense);
+    res.status(200).json(expense);
   } catch (error) {
     next(error);
   }
@@ -63,7 +63,7 @@ export const updateExpense = async (req, res, next) => {
     expense.description = description ?? expense.description;
 
     const updatedExpense = await expense.save();
-    res.json(updatedExpense);
+    res.status(200).json(updatedExpense);
   } catch (error) {
     next(error);
   }
