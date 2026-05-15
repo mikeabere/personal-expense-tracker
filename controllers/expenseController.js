@@ -2,7 +2,7 @@ import Expense from "../models/Expense.js";
 
 export const getExpenses = async (req, res, next) => {
   try {
-    const expenses = await Expense.find().sort({ date: -1 });
+    const expenses = await Expense.find({ user: req.user._id }).sort({ date: -1 });
     res.status(200).json(expenses);
   } catch (error) {
     next(error);
@@ -11,9 +11,9 @@ export const getExpenses = async (req, res, next) => {
 
 export const getExpenseById = async (req, res, next) => {
   try {
-    const expense = await Expense.findById(req.params.id);
+    const expense = await Expense.findOne({ _id: req.params.id, user: req.user._id });
     if (!expense) {
-      res.status(404).json({ message: "Expense not found" });
+      res.status(404);
       throw new Error("Expense not found");
     }
     res.status(200).json(expense);
@@ -32,6 +32,7 @@ export const createExpense = async (req, res, next) => {
     }
 
     const expense = new Expense({
+      user: req.user._id,
       title,
       amount,
       category,
@@ -49,7 +50,7 @@ export const createExpense = async (req, res, next) => {
 export const updateExpense = async (req, res, next) => {
   try {
     const { title, amount, category, date, description } = req.body;
-    const expense = await Expense.findById(req.params.id);
+    const expense = await Expense.findOne({ _id: req.params.id, user: req.user._id });
 
     if (!expense) {
       res.status(404);
@@ -71,7 +72,7 @@ export const updateExpense = async (req, res, next) => {
 
 export const deleteExpense = async (req, res, next) => {
   try {
-    const expense = await Expense.findById(req.params.id);
+    const expense = await Expense.findOne({ _id: req.params.id, user: req.user._id });
     if (!expense) {
       res.status(404);
       throw new Error("Expense not found");

@@ -27,6 +27,21 @@ header {
   margin-bottom: 28px;
 }
 
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
 header h1 {
   margin: 0;
   font-size: 2.4rem;
@@ -176,6 +191,32 @@ textarea {
 
 .summary-card li {
   margin-bottom: 6px;
+}
+
+.auth-shell {
+  min-height: calc(100vh - 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-card {
+  width: min(520px, 100%);
+  background: #ffffff;
+  border: 1px solid #d9e2ec;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 20px 40px rgba(16, 42, 67, 0.08);
+}
+
+.auth-card p {
+  margin-top: 0;
+  color: #334e68;
+}
+
+.auth-card .button-secondary {
+  width: 100%;
+  margin-top: 12px;
 }
 
 @media (min-width: 900px) {

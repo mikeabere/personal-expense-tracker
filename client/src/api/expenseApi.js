@@ -8,32 +8,43 @@ const handleResponse = async (response) => {
   return data;
 };
 
-export const fetchExpenses = async () => {
-  const response = await fetch(`${API_BASE}/expenses`);
+const getHeaders = (token) => {
+  const headers = { "Content-Type": "application/json" };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  return headers;
+};
+
+export const fetchExpenses = async (token) => {
+  const response = await fetch(`${API_BASE}/expenses`, {
+    headers: getHeaders(token),
+  });
   return handleResponse(response);
 };
 
-export const saveExpense = async (expense) => {
+export const saveExpense = async (expense, token) => {
   const response = await fetch(`${API_BASE}/expenses`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: getHeaders(token),
     body: JSON.stringify(expense),
   });
   return handleResponse(response);
 };
 
-export const editExpense = async (id, expense) => {
+export const editExpense = async (id, expense, token) => {
   const response = await fetch(`${API_BASE}/expenses/${id}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
+    headers: getHeaders(token),
     body: JSON.stringify(expense),
   });
   return handleResponse(response);
 };
 
-export const removeExpense = async (id) => {
+export const removeExpense = async (id, token) => {
   const response = await fetch(`${API_BASE}/expenses/${id}`, {
     method: "DELETE",
+    headers: getHeaders(token),
   });
   return handleResponse(response);
 };
