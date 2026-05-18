@@ -13,11 +13,16 @@ A full-stack MERN application for tracking your expenses, categorizing spending,
 - `index.js` - Backend server entrypoint
 - `config/db.js` - MongoDB connection helper
 - `models/Expense.js` - Mongoose expense schema
+- `models/User.js` - Mongoose user schema
 - `controllers/expenseController.js` - CRUD expense logic
-- `routes/expenseRoutes.js` - API endpoints
+- `controllers/authController.js` - CRUD user logic
+- `routes/expenseRoutes.js` - API expense endpoints
+- `routes/authRoutes.js` - API auth endpoints
 - `middleware/errorMiddleware.js` - error handling
+- `middleware/authMiddleware.js` - auth handling
 - `client/` - React application
-- `client/src/api/expenseApi.js` - fetch wrapper for backend API
+- `client/src/api/expenseApi.js` - fetch wrapper for expense backend API
+- `client/src/api/authApi.js` - fetch wrapper for auth backend API
 - `client/src/components/` - UI components
 
 ## Implementation Plan
@@ -25,7 +30,7 @@ A full-stack MERN application for tracking your expenses, categorizing spending,
 ### Backend
 
 1. Install dependencies:
-   - `express`, `mongoose`, `cors`, `dotenv`, `morgan`
+   - `express`, `mongoose`, `cors`, `dotenv`, `morgan`, `bcryptjs`
 2. Configure MongoDB connection in `config/db.js`
 3. Create `Expense` model with fields:
    - `title`, `amount`, `category`, `description`, `date`
