@@ -142,7 +142,7 @@ function App() {
         </section>
 
         <section className="panel summary-panel">
-          <ExpenseSummary summary={summary} />
+          <ExpenseSummary summary={summary} expenses={expenses} />
         </section>
 
         <section className="panel list-panel">

@@ -5,6 +5,7 @@ import {
   createExpense,
   updateExpense,
   deleteExpense,
+  exportExpensesCSV,
 } from "../controllers/expenseController.js";
 import protect from "../middleware/authMiddleware.js";
 
@@ -15,6 +16,8 @@ router.use(protect);
 router.route("/")
   .get(getExpenses)
   .post(createExpense);
+
+router.get("/export", exportExpensesCSV);
 
 router.route("/:id")
   .get(getExpenseById)

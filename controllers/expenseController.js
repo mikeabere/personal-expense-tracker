@@ -84,3 +84,31 @@ export const deleteExpense = async (req, res, next) => {
     next(error);
   }
 };
+
+export const exportExpensesCSV = async (req, res, next) => {
+  try {
+    const expenses = await Expense.find({ user: req.user._id }).sort({ date: -1 });
+
+    const headers = ["Title", "Category", "Amount", "Date", "Description"];
+    const rows = expenses.map((e) => [
+      (e.title || "").replace(/"/g, '""'),
+      (e.category || "").replace(/"/g, '""'),
+      Number(e.amount || 0),
+      new Date(e.date).toISOString(),
+      (e.description || "").replace(/"/g, '""'),
+    ]);
+
+    const csvLines = [headers.join(",")].concat(
+      rows.map((r) => r.map((c) => (typeof c === "string" ? `"${c}"` : c)).join(","))
+    );
+
+    const csvContent = csvLines.join("\n");
+    const filename = `expenses_${new Date().toISOString().slice(0, 10)}.csv`;
+
+    res.setHeader("Content-Type", "text/csv");
+    res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+    res.status(200).send(csvContent);
+  } catch (error) {
+    next(error);
+  }
+};
