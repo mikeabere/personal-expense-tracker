@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+// Importing components
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 import ExpenseSummary from "./components/ExpenseSummary";
@@ -6,6 +7,22 @@ import AuthForm from "./components/AuthForm";
 import { fetchExpenses, saveExpense, removeExpense, editExpense } from "./api/expenseApi";
 import { loginUser, registerUser } from "./api/authApi";
 import "./App.css";
+
+//Importing pages
+import HomePage from "./pages/HomePage";
+import Dashboard from "./pages/Dashboard";
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+    children: [
+      { index: true, Component: Dashboard },
+    ],
+  }
+]);
 
 function App() {
   const [expenses, setExpenses] = useState([]);
@@ -122,6 +139,7 @@ function App() {
   }
 
   return (
+  
     <div className="app-shell">
       <header>
         <div className="header-top">
@@ -151,6 +169,7 @@ function App() {
         </section>
       </main>
     </div>
+    
   );
 }
 
