@@ -49,6 +49,7 @@ export const authUser = async (req, res, next) => {
       email: user.email,
       token: generateToken(user._id),
     });
+    console.log({user: -password}); //will remove this later, just to check if user is being found in the database
   } else {
     res.status(401);
     throw new Error("Invalid email or password");
