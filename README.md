@@ -118,4 +118,4 @@ npm run dev
 - Add authentication - done
 - Add monthly filtering
 - Add charts and exports - done
-- Add dark mode - done
+- Add dark mode - done not yet
