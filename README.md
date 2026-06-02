@@ -116,6 +116,6 @@ npm run dev
 ## Future Enhancements
 
 - Add authentication - done
-- Add monthly filtering
+- Add monthly filtering - not done 
 - Add charts and exports - done
 - Add dark mode - done not yet
