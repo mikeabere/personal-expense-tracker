@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <HomePage />,
     children: [
-      { index: true, Component: Dashboard },
+      { index: true, Component: Dashboard }, //will render Dashboard at the root path ("/")
     ],
   }
 ]);
