@@ -119,4 +119,4 @@ npm run dev
 - Add monthly filtering - not done 
 - Add charts and exports - done
 - Add dark mode - not yet
-- Add payment intergration - M-pesa and bank
+- Add payment intergration - M-pesa and bank payment
