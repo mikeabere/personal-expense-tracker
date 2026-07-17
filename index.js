@@ -11,7 +11,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 const app = express();
 connectDB();
 
-app.use(express.json());
+app.use(express.json()); //enable parsing of JSON request bodies
 app.use(cors()); //handle CORS issues for frontend-backend communication
 
 if (process.env.NODE_ENV === "development") {
