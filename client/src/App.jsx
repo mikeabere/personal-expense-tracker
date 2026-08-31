@@ -14,15 +14,7 @@ import Dashboard from "./pages/Dashboard";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage />,
-    children: [
-      { index: true, Component: Dashboard }, //will render Dashboard at the root path ("/")
-    ],
-  }
-]);
+
 
 function App() {
   const [expenses, setExpenses] = useState([]);
