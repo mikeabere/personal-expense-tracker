@@ -78,7 +78,7 @@ export const deleteExpense = async (req, res, next) => {
       throw new Error("Expense not found");
     }
 
-    await Expense.findByIdAndDelete(expense._id); //added this instead of expense.remove() to avoid deprecation warning
+    await expense.findByIdAndDelete(expense._id); //added this instead of expense.remove() to avoid deprecation warning
     res.json({ message: "Expense removed" });
   } catch (error) {
     next(error);
