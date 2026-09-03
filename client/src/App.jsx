@@ -8,11 +8,8 @@ import { fetchExpenses, saveExpense, removeExpense, editExpense } from "./api/ex
 import { loginUser, registerUser } from "./api/authApi";
 import "./App.css";
 
-//Importing pages
-import HomePage from "./pages/HomePage";
-import Dashboard from "./pages/Dashboard";
-import { createBrowserRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";
+
+
 
 
 
